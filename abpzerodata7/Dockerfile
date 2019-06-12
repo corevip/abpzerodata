@@ -14,6 +14,8 @@ COPY . /usr/src/app
 
 # 设置sh脚本执行权限
 RUN chmod +x /usr/src/app/import-data.sh
+# 把dos格式改为unix格式
+RUN find /usr/src/app -name "*.sh" | xargs sed -i 's/\r$//g'
 
 # 数据库排序规则
 ENV MSSQL_COLLATION=Chinese_PRC_CI_AS
